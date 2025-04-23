@@ -1,4 +1,26 @@
+import { useState } from "react";
+
 export default function FormLogin() {
+
+    const [user, setUser] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUser({
+            ...user,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(user);
+        
+    }
+
     return (
         <div className="w-screen min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-800 px-4 sm:px-6 lg:px-8">
             <div className="relative py-3 sm:max-w-xs sm:mx-auto">
@@ -15,7 +37,6 @@ export default function FormLogin() {
                         <div className="w-full flex flex-col gap-2">
                             <label className="font-semibold text-xs text-gray-400 ">Username</label>
                             <input className="border rounded-lg px-3 py-2 mb-5 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900" placeholder="Username" />
-
                         </div>
                     </div>
                     <div className="w-full flex flex-col gap-2">

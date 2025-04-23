@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+  img      String?
+
+  projects Project[]
+  blogs    Blog[]
+  job      Job?
+  works    Work[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id          Int    @id @default(autoincrement())
+  img_project String
+  title       String
+  description String
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  icons  IconProject[]
+  blog   Blog?         @relation(fields: [blogId], references: [id])
+  blogId Int?          @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blog {
+  id          Int    @id @default(autoincrement())
+  title       String
+  content     String
+  description String
+  img_blog    String
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  project Project? // Relación inversa (opcional)
+  tags    Tag[]    @relation("BlogTags")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id   Int    @id @default(autoincrement())
+  img  String
+  name String
+  rol  String
+
+  userId   Int          @unique
+  user     User         @relation(fields: [userId], references: [id])
+  tags     Tag[]        @relation("JobTags")
+  projects JobProject[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model JobProject {
+  id          Int    @id @default(autoincrement())
+  img_project String
+  title       String
+  description String
+  icons       String
+
+  jobId Int
+  job   Job @relation(fields: [jobId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Work {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  img_work    String
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  icon String
+  name String
+
+  blogs Blog[] @relation("BlogTags")
+  jobs  Job[]  @relation("JobTags")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model IconProject {
+  id           Int    @id @default(autoincrement())
+  icon_project String
+  name         String
+
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
