@@ -1,8 +1,8 @@
 // cms/infrastructure/db/prisma/UserRepository.ts
 
-import { UserRepository } from "@/modules/cms/domain/repositories/UserRepository";
-import { CreateUserDTO } from "@/modules/cms/interface/CreateUserDTO";
-import { prisma } from "../../../../../../lib/prisma";
+import { UserRepository } from "@/modules/cms/domain/user/repositories/user.repository";
+import { CreateUserDTO } from "@/modules/cms/domain/user/entities/create-user.entity";
+import { prisma } from "../../config/prisma";
 
 export class PrismaUserRepository implements UserRepository {
   async createUser(data: CreateUserDTO): Promise<void> {
@@ -10,7 +10,7 @@ export class PrismaUserRepository implements UserRepository {
       data: {
         username: data.username,
         password: data.password, // Deberías hashearlo antes
-        img: data.img || "", // Proporciona un valor predeterminado si no se pasa
+        img: "",
       },
     });
   }
