@@ -1,8 +1,8 @@
-import { BiLogoAws, BiLogoVisualStudio } from 'react-icons/bi';
-import { FaPython, FaJava, FaRust, FaCss3Alt, FaHtml5, FaSass, FaMarkdown, FaCogs, FaReact, FaAngular, FaGitAlt, FaDocker, FaTrello } from 'react-icons/fa';
+import { BiLogoVisualStudio } from 'react-icons/bi';
+import { FaJava, FaCss3Alt, FaHtml5, FaMarkdown, FaReact, FaAngular, FaGitAlt, FaDocker, FaTrello } from 'react-icons/fa';
 import { PiFileSql } from 'react-icons/pi';
 import { RiNextjsFill, RiTailwindCssFill } from 'react-icons/ri';
-import { SiJavascript, SiTypescript, SiMysql, SiSqlite, SiMongodb, SiExpress, SiNodedotjs, SiChakraui, SiNestjs, SiPostman, SiNotion, SiVsco, SiVscodium, SiSpring, SiIntellijidea, SiVercel, SiAwsamplify, SiRailway, SiGithub, SiCloudflare, SiFirebase } from 'react-icons/si';
+import { SiJavascript, SiTypescript, SiMysql, SiMongodb, SiExpress, SiNodedotjs, SiChakraui, SiNestjs, SiPostman, SiNotion, SiVsco, SiVscodium, SiSpring, SiIntellijidea, SiVercel, SiRailway, SiGithub, SiCloudflare, SiFirebase } from 'react-icons/si';
 import { TbBrandAstro } from 'react-icons/tb';
 
 

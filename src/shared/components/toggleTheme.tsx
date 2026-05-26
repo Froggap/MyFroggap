@@ -1,8 +1,8 @@
 'use client'
 
-import { FaMoon, FaSun } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { FaMoon, FaSun } from "react-icons/fa";
+
 
 export default function ToggleTheme() {
   const {theme, setTheme} = useTheme();
